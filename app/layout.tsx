@@ -9,9 +9,9 @@ export const metadata: Metadata = {
   title: 'EmailAction - 邮件待办自动同步',
   description: 'AI 识别邮件中的待办事项，一键同步到飞书 / Notion / Todoist',
   icons: {
-    icon: '/logo/logo-icon.svg',
-    shortcut: '/logo/logo-icon.svg',
-    apple: '/logo/logo-icon.svg',
+    icon: '/logo/icon.svg',
+    shortcut: '/logo/icon.svg',
+    apple: '/logo/icon.svg',
   },
 }
 
