@@ -25,14 +25,9 @@ import {
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog'
 
-type SyncFrequency = 'FIFTEEN_MINUTES' | 'THIRTY_MINUTES' | 'HOURLY' | 'MANUAL'
-
 interface UserSettings {
   id: string
   userId: string
-  emailNotifications: boolean
-  autoSync: boolean
-  syncFrequency: SyncFrequency
 }
 
 interface GmailAccount {
@@ -55,23 +50,12 @@ const platformConfig: Record<string, { name: string; color: string }> = {
   NOTION: { name: 'Notion', color: 'text-[#1A1918]' },
 }
 
-const syncFrequencyLabels: Record<SyncFrequency, string> = {
-  FIFTEEN_MINUTES: '每 15 分钟',
-  THIRTY_MINUTES: '每 30 分钟',
-  HOURLY: '每小时',
-  MANUAL: '手动同步',
-}
-
 export default function SettingsPage() {
   const { data: session } = useSession()
   const { toast } = useToast()
-  const [emailNotifications, setEmailNotifications] = useState(true)
-  const [autoSync, setAutoSync] = useState(false)
-  const [syncFrequency, setSyncFrequency] = useState<SyncFrequency>('THIRTY_MINUTES')
   const [gmailAccounts, setGmailAccounts] = useState<GmailAccount[]>([])
   const [taskAccounts, setTaskAccounts] = useState<TaskAccount[]>([])
   const [loading, setLoading] = useState(true)
-  const [isSaving, setIsSaving] = useState(false)
   const [isDeleting, setIsDeleting] = useState(false)
   const [connectingGmail, setConnectingGmail] = useState(false)
   const [showPlatformDialog, setShowPlatformDialog] = useState(false)
@@ -93,17 +77,7 @@ export default function SettingsPage() {
   }, [session])
 
   async function fetchSettings() {
-    try {
-      const res = await fetch('/api/user/settings')
-      if (res.ok) {
-        const data: UserSettings = await res.json()
-        setEmailNotifications(data.emailNotifications)
-        setAutoSync(data.autoSync)
-        setSyncFrequency(data.syncFrequency)
-      }
-    } catch (error) {
-      console.error('Failed to fetch settings:', error)
-    }
+    // Settings no longer needed - auto sync removed
   }
 
   async function fetchAccounts() {
@@ -125,44 +99,6 @@ export default function SettingsPage() {
     } finally {
       setLoading(false)
     }
-  }
-
-  async function saveSettings(updates: Partial<UserSettings>) {
-    setIsSaving(true)
-    try {
-      const res = await fetch('/api/user/settings', {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(updates),
-      })
-
-      if (res.ok) {
-        toast({ title: '设置已保存' })
-      } else {
-        throw new Error('Failed to save settings')
-      }
-    } catch (error) {
-      toast({ title: '保存失败', variant: 'destructive' })
-    } finally {
-      setIsSaving(false)
-    }
-  }
-
-  function handleEmailNotificationsToggle() {
-    const newValue = !emailNotifications
-    setEmailNotifications(newValue)
-    saveSettings({ emailNotifications: newValue })
-  }
-
-  function handleAutoSyncToggle() {
-    const newValue = !autoSync
-    setAutoSync(newValue)
-    saveSettings({ autoSync: newValue })
-  }
-
-  function handleSyncFrequencyChange(frequency: SyncFrequency) {
-    setSyncFrequency(frequency)
-    saveSettings({ syncFrequency: frequency })
   }
 
   async function handleDeleteAccount() {
@@ -408,75 +344,6 @@ export default function SettingsPage() {
                 ))}
               </div>
             )}
-          </div>
-        </section>
-
-        {/* 同步设置 */}
-        <section className="bg-white border border-[#EBE9E4] rounded-xl">
-          <div className="px-8 py-6 border-b border-[#EBE9E4]">
-            <h2 className="text-lg font-semibold text-[#1A1918]">同步设置</h2>
-          </div>
-          <div className="p-8 space-y-6">
-            {/* Auto Sync */}
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-[14px] font-medium text-[#1A1918]">自动同步新邮件</p>
-                <p className="text-[12px] text-[#9E9C98] mt-0.5">检测到新邮件时自动分析</p>
-              </div>
-              <button
-                onClick={handleAutoSyncToggle}
-                disabled={isSaving}
-                className={`relative w-10 h-5 rounded-full transition-colors ${
-                  autoSync ? 'bg-[#1A1918]' : 'bg-[#EBE9E4]'
-                }`}
-              >
-                <span
-                  className={`absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full transition-transform ${
-                    autoSync ? 'translate-x-5' : ''
-                  }`}
-                />
-              </button>
-            </div>
-
-            <div className="border-t border-[#F0EFEB]" />
-
-            {/* Email Notifications */}
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-[14px] font-medium text-[#1A1918]">邮件通知</p>
-                <p className="text-[12px] text-[#9E9C98] mt-0.5">发现新待办时发送邮件通知</p>
-              </div>
-              <button
-                onClick={handleEmailNotificationsToggle}
-                disabled={isSaving}
-                className={`relative w-10 h-5 rounded-full transition-colors ${
-                  emailNotifications ? 'bg-[#1A1918]' : 'bg-[#EBE9E4]'
-                }`}
-              >
-                <span
-                  className={`absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full transition-transform ${
-                    emailNotifications ? 'translate-x-5' : ''
-                  }`}
-                />
-              </button>
-            </div>
-
-            <div className="border-t border-[#F0EFEB]" />
-
-            {/* Sync Frequency */}
-            <div>
-              <p className="text-[14px] font-medium text-[#1A1918] mb-3">同步频率</p>
-              <select
-                value={syncFrequency}
-                onChange={(e) => handleSyncFrequencyChange(e.target.value as SyncFrequency)}
-                disabled={isSaving}
-                className="w-full p-3 border border-[#EBE9E4] bg-white text-[#1A1918] text-[14px] focus:border-[#1A1918] focus:ring-0 disabled:opacity-50"
-              >
-                {Object.entries(syncFrequencyLabels).map(([value, label]) => (
-                  <option key={value} value={value}>{label}</option>
-                ))}
-              </select>
-            </div>
           </div>
         </section>
 
