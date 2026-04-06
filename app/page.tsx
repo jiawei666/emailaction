@@ -78,7 +78,7 @@ export default function HomePage() {
       </header>
 
       {/* Hero Section */}
-      <section className="min-h-screen flex flex-col items-center justify-center px-8 lg:px-16 pt-20">
+      <section className="min-h-screen flex flex-col items-center justify-center px-8 lg:px-16 pt-20 relative">
         <div className="max-w-6xl mx-auto w-full text-center">
           {/* Tag */}
           <ScrollReveal delay={1}>
