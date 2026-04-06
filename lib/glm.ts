@@ -43,13 +43,13 @@ interface GLMResponse {
 const GLM_BASE_URL = process.env.GLM_API_URL || 'https://open.bigmodel.cn/api/paas/v4'
 const GLM_API_KEY = process.env.GLM_API_KEY
 
-// 根据是否使用 CRS 代理决定完整 URL
+// 根据是否使用代理决定完整 URL
 const getChatCompletionsUrl = () => {
-  if (GLM_BASE_URL.includes('aicoding-proxy')) {
-    // CRS 代理使用 OpenAI 兼容路径
-    return `${GLM_BASE_URL}/v1/chat/completions`
+  if (GLM_BASE_URL.includes('open.bigmodel.cn')) {
+    // 智谱官方 API
+    return `${GLM_BASE_URL}/chat/completions`
   }
-  // 智谱官方 API
+  // OpenAI 兼容代理（/v2 或 /v1 已经在 base URL 中）
   return `${GLM_BASE_URL}/chat/completions`
 }
 
