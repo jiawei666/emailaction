@@ -22,8 +22,17 @@ export async function GET(req: NextRequest) {
     }
 
     const clientId = process.env.GOOGLE_CLIENT_ID
+    const clientSecret = process.env.GOOGLE_CLIENT_SECRET
+    console.log('Env check:', {
+      hasClientId: !!clientId,
+      clientIdLength: clientId?.length,
+      hasClientSecret: !!clientSecret,
+      clientSecretLength: clientSecret?.length,
+      allEnvKeys: Object.keys(process.env).filter(k => k.includes('GOOGLE') || k.includes('AUTH'))
+    })
+
     if (!clientId) {
-      console.error('Google OAuth not configured')
+      console.error('Google OAuth not configured - GOOGLE_CLIENT_ID is missing')
       return NextResponse.json({ error: 'Google OAuth not configured' }, { status: 500 })
     }
 
