@@ -21,15 +21,9 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
-    const clientId = process.env.GOOGLE_CLIENT_ID
-    const clientSecret = process.env.GOOGLE_CLIENT_SECRET
-    console.log('Env check:', {
-      hasClientId: !!clientId,
-      clientIdLength: clientId?.length,
-      hasClientSecret: !!clientSecret,
-      clientSecretLength: clientSecret?.length,
-      allEnvKeys: Object.keys(process.env).filter(k => k.includes('GOOGLE') || k.includes('AUTH'))
-    })
+    // 支持 NextAuth v5 (AUTH_GOOGLE_*) 和传统格式 (GOOGLE_CLIENT_*)
+    const clientId = process.env.GOOGLE_CLIENT_ID || process.env.AUTH_GOOGLE_ID
+    const clientSecret = process.env.GOOGLE_CLIENT_SECRET || process.env.AUTH_GOOGLE_SECRET
 
     if (!clientId) {
       console.error('Google OAuth not configured - GOOGLE_CLIENT_ID is missing')

@@ -45,8 +45,9 @@ export async function GET(req: NextRequest) {
     }
 
     // 交换授权码获取 access token
-    const clientId = process.env.GOOGLE_CLIENT_ID
-    const clientSecret = process.env.GOOGLE_CLIENT_SECRET
+    // 支持 NextAuth v5 (AUTH_GOOGLE_*) 和传统格式 (GOOGLE_CLIENT_*)
+    const clientId = process.env.GOOGLE_CLIENT_ID || process.env.AUTH_GOOGLE_ID
+    const clientSecret = process.env.GOOGLE_CLIENT_SECRET || process.env.AUTH_GOOGLE_SECRET
     const redirectUri = `${process.env.NEXTAUTH_URL || 'http://localhost:3000'}/api/gmail/oauth/callback`
 
     console.log('Exchanging code for token...')
