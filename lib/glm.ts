@@ -107,7 +107,8 @@ async function callGLMAPI(messages: GLMMessage[]): Promise<string> {
   const apiUrl = getChatCompletionsUrl()
   // 讯飞 Coding Plan 要求模型名统一使用 astron-code-latest
   // 底层模型在讯飞平台配置，不是在请求中指定
-  const model = 'astron-code-latest'
+  // 可通过环境变量 GLM_MODEL 覆盖（不设置则使用默认值）
+  const model = process.env.GLM_MODEL || 'astron-code-latest'
 
   console.log('[GLM] Calling API:', apiUrl, 'model:', model)
 
