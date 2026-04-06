@@ -92,14 +92,21 @@ const SYSTEM_PROMPT = `你是一个专业的邮件分析助手。你的任务是
  * 调用 GLM-4 API
  */
 async function callGLMAPI(messages: GLMMessage[]): Promise<string> {
+  // 调试日志
+  console.log('[GLM] Env check:', {
+    hasGLM_API_KEY: !!GLM_API_KEY,
+    GLM_BASE_URL,
+    allEnvKeys: Object.keys(process.env).filter(k => k.includes('GLM') || k.includes('API'))
+  })
+
   if (!GLM_API_KEY) {
     console.error('[GLM] GLM_API_KEY is not configured')
     throw new Error('GLM_API_KEY is not configured')
   }
 
   const apiUrl = getChatCompletionsUrl()
-  // CRS 代理使用 glm-4 模型
-  const model = GLM_BASE_URL.includes('aicoding-proxy') ? 'glm-4' : 'glm-4'
+  // 讯飞 CRS 使用 OpenAI 兼容格式，模型名根据实际配置
+  const model = 'glm-4'
 
   console.log('[GLM] Calling API:', apiUrl, 'model:', model)
 
