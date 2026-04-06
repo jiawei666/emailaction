@@ -1,0 +1,191 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// NextAuth.js 模型
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  accounts           Account[]
+  sessions           Session[]
+  gmailAccounts      GmailAccount[]
+  taskAccounts       TaskAccount[]
+  syncItems          SyncItem[]
+  notifications      Notification[]
+  settings           UserSettings?
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+// Gmail 账户
+model GmailAccount {
+  id                String   @id @default(cuid())
+  userId            String
+  email             String
+  accessToken       String
+  refreshToken      String?
+  tokenExpiry       DateTime?
+  historyId         String?
+  syncStatus        SyncStatus @default(PENDING)
+  lastSyncAt        DateTime?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  syncItems  SyncItem[]
+
+  @@unique([userId, email])
+}
+
+// 任务平台账户
+model TaskAccount {
+  id            String          @id @default(cuid())
+  userId        String
+  platform      Platform
+  accountId     String
+  email         String?
+  accessToken   String?
+  refreshToken  String?
+  workspaceId   String?
+  workspaceName String?
+  metadata      String?
+  isActive      Boolean         @default(true)
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  syncItems SyncItem[]
+
+  @@unique([userId, platform, accountId])
+}
+
+// 同步项目
+model SyncItem {
+  id              String        @id @default(cuid())
+  userId          String
+  gmailAccountId  String
+  taskAccountId   String
+  gmailMessageId  String    @unique
+  taskId          String?
+  title           String
+  description     String?
+  status          SyncStatus    @default(PENDING)
+  dueDate         DateTime?
+  priority        Int?
+  labels          String        @default("[]")
+  error           String?
+  retryCount      Int           @default(0)
+  syncedAt        DateTime?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  user         User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  gmailAccount GmailAccount @relation(fields: [gmailAccountId], references: [id], onDelete: Cascade)
+  taskAccount  TaskAccount  @relation(fields: [taskAccountId], references: [id], onDelete: Cascade)
+
+  @@index([userId, status])
+  @@index([gmailMessageId])
+  @@index([taskId])
+}
+
+// 通知
+model Notification {
+  id        String           @id @default(cuid())
+  userId    String
+  type      NotificationType
+  title     String
+  message   String
+  read      Boolean          @default(false)
+  createdAt DateTime         @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, read])
+}
+
+// 枚举
+enum SyncStatus {
+  PENDING
+  PROCESSING
+  SUCCESS
+  FAILED
+  CANCELLED
+}
+
+enum Platform {
+  FEISHU
+  NOTION
+  TODOIST
+}
+
+enum NotificationType {
+  SYNC_SUCCESS
+  SYNC_FAILED
+  ACCOUNT_CONNECTED
+  ACCOUNT_DISCONNECTED
+  SYSTEM
+}
+
+// 用户设置
+model UserSettings {
+  id                    String   @id @default(cuid())
+  userId                String   @unique
+  emailNotifications    Boolean  @default(true)
+  autoSync              Boolean  @default(false)
+  syncFrequency         SyncFrequency @default(THIRTY_MINUTES)
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+enum SyncFrequency {
+  FIFTEEN_MINUTES
+  THIRTY_MINUTES
+  HOURLY
+  MANUAL
+}

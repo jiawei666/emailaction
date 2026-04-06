@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EmailAction Logo Design — 品牌色版本</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* EmailAction 品牌色 */
+      --terracotta: #C15F3C;
+      --terracotta-light: #D4785A;
+      --terracotta-dark: #A34D2F;
+      --obsidian: #1A1918;
+      --pampas: #F4F3EE;
+      --charcoal: #2A2826;
+      --muted: #6B6966;
+      --white: #FFFFFF;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--obsidian);
+      color: var(--pampas);
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      opacity: 0.03;
+      pointer-events: none;
+      z-index: 1000;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 80px 40px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 80px;
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 300;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      color: var(--terracotta);
+    }
+
+    .subtitle {
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    .brand-colors {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-top: 32px;
+    }
+
+    .color-chip {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 16px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 6px;
+    }
+
+    .color-dot {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+    }
+
+    .color-name {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+    }
+
+    .color-hex {
+      font-family: monospace;
+      font-size: 0.75rem;
+      color: var(--terracotta);
+    }
+
+    .section {
+      margin-bottom: 80px;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      margin-bottom: 40px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(193, 95, 60, 0.2);
+      color: var(--terracotta);
+    }
+
+    .logo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 32px;
+    }
+
+    .logo-card {
+      background: var(--charcoal);
+      border: 1px solid rgba(193, 95, 60, 0.15);
+      padding: 48px 32px;
+      transition: all 0.4s ease;
+    }
+
+    .logo-card:hover {
+      border-color: rgba(193, 95, 60, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .card-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 32px;
+      opacity: 0.8;
+    }
+
+    .logo-display {
+      height: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 32px;
+    }
+
+    .logo-svg {
+      width: 100px;
+      height: 100px;
+      transition: transform 0.3s ease;
+    }
+
+    .logo-card:hover .logo-svg {
+      transform: scale(1.05);
+    }
+
+    .logo-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+      color: var(--pampas);
+    }
+
+    .logo-desc {
+      font-size: 0.75rem;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    /* SVG styles - using brand colors */
+    .stroke-brand { stroke: var(--terracotta); fill: none; stroke-width: 1.5; }
+    .fill-brand { fill: var(--terracotta); }
+
+    /* Light background section */
+    .light-section {
+      background: var(--pampas);
+      padding: 60px 40px;
+      margin: 0 -40px 80px;
+    }
+
+    .light-section .section-title {
+      color: var(--obsidian);
+      border-color: rgba(193, 95, 60, 0.2);
+    }
+
+    .light-section .logo-card {
+      background: var(--white);
+      border-color: rgba(193, 95, 60, 0.15);
+    }
+
+    .light-section .logo-name {
+      color: var(--obsidian);
+    }
+
+    .light-section .logo-desc {
+      color: var(--muted);
+    }
+
+    .light-section .stroke-brand { stroke: var(--terracotta); }
+    .light-section .fill-brand { fill: var(--terracotta); }
+
+    /* Dark background (monochrome) */
+    .dark-mono .logo-card {
+      background: var(--obsidian);
+    }
+
+    .dark-mono .stroke-brand { stroke: var(--pampas); stroke-width: 2; }
+    .dark-mono .fill-brand { fill: var(--pampas); }
+
+    /* Application Preview */
+    .preview-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .preview-card {
+      padding: 32px;
+      border: 1px solid rgba(193, 95, 60, 0.15);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .preview-card.light {
+      background: var(--pampas);
+    }
+
+    .preview-card.dark {
+      background: var(--obsidian);
+    }
+
+    .preview-card.card {
+      background: var(--white);
+      border: 1px solid rgba(0,0,0,0.08);
+    }
+
+    .wordmark {
+      display: flex;
+      align-items: baseline;
+      gap: 3px;
+    }
+
+    .wordmark .email {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 300;
+    }
+
+    .wordmark .action {
+      font-weight: 600;
+      font-size: 1.2rem;
+    }
+
+    .preview-card.light .wordmark .email,
+    .preview-card.card .wordmark .email { color: var(--obsidian); }
+
+    .preview-card.dark .wordmark .email { color: var(--pampas); }
+
+    .preview-card .wordmark .action { color: var(--terracotta); }
+
+    .preview-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .preview-card.light .preview-label,
+    .preview-card.card .preview-label { color: var(--muted); }
+
+    .preview-card.dark .preview-label { color: rgba(255,255,255,0.4); }
+
+    /* Size showcase */
+    .size-showcase {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 40px;
+      padding: 48px;
+      background: var(--charcoal);
+      border: 1px solid rgba(193, 95, 60, 0.15);
+    }
+
+    .size-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .size-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* Favicon simulation */
+    .favicon-preview {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 24px;
+      background: var(--charcoal);
+      border: 1px solid rgba(193, 95, 60, 0.15);
+      margin-top: 32px;
+    }
+
+    .browser-tab {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: #2D2D2D;
+      border-radius: 6px 6px 0 0;
+    }
+
+    .favicon {
+      width: 16px;
+      height: 16px;
+      background: var(--terracotta);
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .favicon svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    .tab-title {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.7);
+    }
+
+    hr {
+      border: none;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(193, 95, 60, 0.3), transparent);
+      margin: 60px 0;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 0;
+      border-top: 1px solid rgba(193, 95, 60, 0.1);
+    }
+
+    .footer-text {
+      font-size: 0.7rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .logo-card {
+      animation: fadeIn 0.6s ease forwards;
+      opacity: 0;
+    }
+
+    .logo-card:nth-child(1) { animation-delay: 0.1s; }
+    .logo-card:nth-child(2) { animation-delay: 0.2s; }
+    .logo-card:nth-child(3) { animation-delay: 0.3s; }
+    .logo-card:nth-child(4) { animation-delay: 0.4s; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>EmailAction</h1>
+      <p class="subtitle">Logo Design System — 品牌色版本</p>
+      <div class="brand-colors">
+        <div class="color-chip">
+          <div class="color-dot" style="background: #C15F3C;"></div>
+          <span class="color-name">Primary</span>
+          <span class="color-hex">#C15F3C</span>
+        </div>
+        <div class="color-chip">
+          <div class="color-dot" style="background: #1A1918;"></div>
+          <span class="color-name">Dark</span>
+          <span class="color-hex">#1A1918</span>
+        </div>
+        <div class="color-chip">
+          <div class="color-dot" style="background: #F4F3EE;"></div>
+          <span class="color-name">Light</span>
+          <span class="color-hex">#F4F3EE</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Primary Logos - Dark Background -->
+    <section class="section">
+      <h2 class="section-title">Primary Logos — Dark Mode</h2>
+      <div class="logo-grid">
+
+        <div class="logo-card">
+          <span class="card-label">Option A — Envelope Arrow</span>
+          <div class="logo-display">
+            <svg class="logo-svg" viewBox="0 0 100 100">
+              <path class="stroke-brand" d="M15 30 L50 55 L85 30 L85 70 L15 70 Z" />
+              <path class="stroke-brand" d="M15 30 L50 55 L85 30" />
+              <polygon class="fill-brand" points="68,40 80,50 68,60 71,50" />
+            </svg>
+          </div>
+          <h3 class="logo-name">Envelope Arrow</h3>
+          <p class="logo-desc">信封 + 动作箭头的抽象融合，象征邮件的传递与处理</p>
+        </div>
+
+        <div class="logo-card">
+          <span class="card-label">Option B — Sync Rings</span>
+          <div class="logo-display">
+            <svg class="logo-svg" viewBox="0 0 100 100">
+              <circle class="stroke-brand" cx="38" cy="50" r="22" />
+              <circle class="stroke-brand" cx="62" cy="50" r="22" />
+              <circle class="fill-brand" cx="50" cy="50" r="6" />
+            </svg>
+          </div>
+          <h3 class="logo-name">Sync Rings</h3>
+          <p class="logo-desc">交错的同步环，中心点代表焦点。几何美感与功能寓意并存</p>
+        </div>
+
+        <div class="logo-card">
+          <span class="card-label">Option C — Letter EA</span>
+          <div class="logo-display">
+            <svg class="logo-svg" viewBox="0 0 100 100">
+              <path class="stroke-brand" d="M22 22 L22 78 L50 78" stroke-linecap="round" />
+              <path class="stroke-brand" d="M22 50 L42 50" stroke-linecap="round" />
+              <path class="stroke-brand" d="M22 22 L50 22" stroke-linecap="round" />
+              <path class="stroke-brand" d="M58 22 L78 78" stroke-linecap="round" />
+              <path class="stroke-brand" d="M78 22 L58 78" stroke-linecap="round" />
+              <path class="stroke-brand" d="M62 50 L74 50" stroke-linecap="round" />
+            </svg>
+          </div>
+          <h3 class="logo-name">Letter Merge</h3>
+          <p class="logo-desc">E 与 A 的几何化融合，低调但富有辨识度</p>
+        </div>
+
+        <div class="logo-card">
+          <span class="card-label">Option D — Action Mark</span>
+          <div class="logo-display">
+            <svg class="logo-svg" viewBox="0 0 100 100">
+              <rect class="stroke-brand" x="18" y="28" width="64" height="44" rx="4" />
+              <path class="stroke-brand" d="M18 35 L50 55 L82 35" />
+              <circle class="fill-brand" cx="70" cy="22" r="8" />
+            </svg>
+          </div>
+          <h3 class="logo-name">Action Mark</h3>
+          <p class="logo-desc">信封 + 通知圆点，表示邮件触发动作</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Light Background -->
+    <div class="light-section">
+      <section class="section" style="margin-bottom: 0;">
+        <h2 class="section-title">Light Mode</h2>
+        <div class="logo-grid" style="grid-template-columns: repeat(2, 1fr);">
+
+          <div class="logo-card">
+            <span class="card-label">Option A</span>
+            <div class="logo-display">
+              <svg class="logo-svg" viewBox="0 0 100 100">
+                <path class="stroke-brand" d="M15 30 L50 55 L85 30 L85 70 L15 70 Z" />
+                <path class="stroke-brand" d="M15 30 L50 55 L85 30" />
+                <polygon class="fill-brand" points="68,40 80,50 68,60 71,50" />
+              </svg>
+            </div>
+            <h3 class="logo-name">Envelope Arrow</h3>
+          </div>
+
+          <div class="logo-card">
+            <span class="card-label">Option B</span>
+            <div class="logo-display">
+              <svg class="logo-svg" viewBox="0 0 100 100">
+                <circle class="stroke-brand" cx="38" cy="50" r="22" />
+                <circle class="stroke-brand" cx="62" cy="50" r="22" />
+                <circle class="fill-brand" cx="50" cy="50" r="6" />
+              </svg>
+            </div>
+            <h3 class="logo-name">Sync Rings</h3>
+          </div>
+
+        </div>
+      </section>
+    </div>
+
+    <!-- Monochrome -->
+    <section class="section">
+      <h2 class="section-title">Monochrome</h2>
+      <div class="logo-grid dark-mono" style="grid-template-columns: repeat(2, 1fr);">
+
+        <div class="logo-card">
+          <span class="card-label">Option A — Mono</span>
+          <div class="logo-display">
+            <svg class="logo-svg" viewBox="0 0 100 100">
+              <path class="stroke-brand" d="M15 30 L50 55 L85 30 L85 70 L15 70 Z" />
+              <path class="stroke-brand" d="M15 30 L50 55 L85 30" />
+              <polygon class="fill-brand" points="68,40 80,50 68,60 71,50" />
+            </svg>
+          </div>
+          <h3 class="logo-name">Envelope Arrow</h3>
+          <p class="logo-desc">纯白版本，用于深色背景</p>
+        </div>
+
+        <div class="logo-card">
+          <span class="card-label">Option B — Mono</span>
+          <div class="logo-display">
+            <svg class="logo-svg" viewBox="0 0 100 100">
+              <circle class="stroke-brand" cx="38" cy="50" r="22" />
+              <circle class="stroke-brand" cx="62" cy="50" r="22" />
+              <circle class="fill-brand" cx="50" cy="50" r="6" />
+            </svg>
+          </div>
+          <h3 class="logo-name">Sync Rings</h3>
+          <p class="logo-desc">纯白版本，用于深色背景</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Size System -->
+    <section class="section">
+      <h2 class="section-title">Scale System</h2>
+      <div class="size-showcase">
+        <div class="size-item">
+          <svg width="16" height="16" viewBox="0 0 100 100">
+            <circle cx="38" cy="50" r="22" fill="none" stroke="#C15F3C" stroke-width="6" />
+            <circle cx="62" cy="50" r="22" fill="none" stroke="#C15F3C" stroke-width="6" />
+            <circle cx="50" cy="50" r="10" fill="#C15F3C" />
+          </svg>
+          <span class="size-label">16px</span>
+        </div>
+        <div class="size-item">
+          <svg width="24" height="24" viewBox="0 0 100 100">
+            <circle cx="38" cy="50" r="22" fill="none" stroke="#C15F3C" stroke-width="4" />
+            <circle cx="62" cy="50" r="22" fill="none" stroke="#C15F3C" stroke-width="4" />
+            <circle cx="50" cy="50" r="8" fill="#C15F3C" />
+          </svg>
+          <span class="size-label">24px</span>
+        </div>
+        <div class="size-item">
+          <svg width="32" height="32" viewBox="0 0 100 100">
+            <circle cx="38" cy="50" r="22" fill="none" stroke="#C15F3C" stroke-width="3" />
+            <circle cx="62" cy="50" r="22" fill="none" stroke="#C15F3C" stroke-width="3" />
+            <circle cx="50" cy="50" r="7" fill="#C15F3C" />
+          </svg>
+          <span class="size-label">32px</span>
+        </div>
+        <div class="size-item">
+          <svg width="48" height="48" viewBox="0 0 100 100">
+            <circle cx="38" cy="50" r="22" fill="none" stroke="#C15F3C" stroke-width="2" />
+            <circle cx="62" cy="50" r="22" fill="none" stroke="#C15F3C" stroke-width="2" />
+            <circle cx="50" cy="50" r="6" fill="#C15F3C" />
+          </svg>
+          <span class="size-label">48px</span>
+        </div>
+        <div class="size-item">
+          <svg width="64" height="64" viewBox="0 0 100 100">
+            <circle cx="38" cy="50" r="22" fill="none" stroke="#C15F3C" stroke-width="1.5" />
+            <circle cx="62" cy="50" r="22" fill="none" stroke="#C15F3C" stroke-width="1.5" />
+            <circle cx="50" cy="50" r="6" fill="#C15F3C" />
+          </svg>
+          <span class="size-label">64px</span>
+        </div>
+        <div class="size-item">
+          <svg width="96" height="96" viewBox="0 0 100 100">
+            <circle cx="38" cy="50" r="22" fill="none" stroke="#C15F3C" stroke-width="1.5" />
+            <circle cx="62" cy="50" r="22" fill="none" stroke="#C15F3C" stroke-width="1.5" />
+            <circle cx="50" cy="50" r="6" fill="#C15F3C" />
+          </svg>
+          <span class="size-label">96px</span>
+        </div>
+      </div>
+
+      <!-- Favicon Preview -->
+      <div class="favicon-preview">
+        <div class="browser-tab">
+          <div class="favicon">
+            <svg viewBox="0 0 100 100">
+              <circle cx="38" cy="50" r="22" fill="none" stroke="#FFF" stroke-width="4" />
+              <circle cx="62" cy="50" r="22" fill="none" stroke="#FFF" stroke-width="4" />
+              <circle cx="50" cy="50" r="8" fill="#FFF" />
+            </svg>
+          </div>
+          <span class="tab-title">EmailAction — Dashboard</span>
+        </div>
+        <span class="preview-label">浏览器标签页预览</span>
+      </div>
+    </section>
+
+    <!-- Application Preview -->
+    <section class="section">
+      <h2 class="section-title">Application Preview</h2>
+      <div class="preview-grid">
+
+        <div class="preview-card light">
+          <svg width="48" height="48" viewBox="0 0 100 100">
+            <circle cx="38" cy="50" r="22" fill="none" stroke="#C15F3C" stroke-width="1.5" />
+            <circle cx="62" cy="50" r="22" fill="none" stroke="#C15F3C" stroke-width="1.5" />
+            <circle cx="50" cy="50" r="6" fill="#C15F3C" />
+          </svg>
+          <div class="wordmark">
+            <span class="email">Email</span><span class="action">Action</span>
+          </div>
+          <span class="preview-label">Light Mode</span>
+        </div>
+
+        <div class="preview-card dark">
+          <svg width="48" height="48" viewBox="0 0 100 100">
+            <circle cx="38" cy="50" r="22" fill="none" stroke="#C15F3C" stroke-width="1.5" />
+            <circle cx="62" cy="50" r="22" fill="none" stroke="#C15F3C" stroke-width="1.5" />
+            <circle cx="50" cy="50" r="6" fill="#C15F3C" />
+          </svg>
+          <div class="wordmark">
+            <span class="email">Email</span><span class="action">Action</span>
+          </div>
+          <span class="preview-label">Dark Mode</span>
+        </div>
+
+        <div class="preview-card card">
+          <svg width="48" height="48" viewBox="0 0 100 100">
+            <circle cx="38" cy="50" r="22" fill="none" stroke="#C15F3C" stroke-width="1.5" />
+            <circle cx="62" cy="50" r="22" fill="none" stroke="#C15F3C" stroke-width="1.5" />
+            <circle cx="50" cy="50" r="6" fill="#C15F3C" />
+          </svg>
+          <div class="wordmark">
+            <span class="email">Email</span><span class="action">Action</span>
+          </div>
+          <span class="preview-label">Card Component</span>
+        </div>
+
+      </div>
+    </section>
+
+    <hr>
+
+    <footer>
+      <p class="footer-text">EmailAction Brand Guidelines · 2026</p>
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,942 @@
+{
+  "config": {
+    "configFile": "/Users/yuanjiawei/ai-coding/coviber/apps/emailaction/playwright-real.config.ts",
+    "rootDir": "/Users/yuanjiawei/ai-coding/coviber/apps/emailaction/e2e/tests",
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 4
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/yuanjiawei/ai-coding/coviber/apps/emailaction/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 4
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/Users/yuanjiawei/ai-coding/coviber/apps/emailaction/e2e/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "html",
+        {
+          "outputFolder": "playwright-report"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/results.json"
+        }
+      ],
+      [
+        "list",
+        null
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.59.1",
+    "workers": 4,
+    "webServer": {
+      "command": "npm run dev",
+      "url": "http://localhost:3000",
+      "reuseExistingServer": true,
+      "timeout": 120000
+    }
+  },
+  "suites": [
+    {
+      "title": "auth.spec.ts",
+      "file": "auth.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "认证流程 - 真实环境",
+          "file": "auth.spec.ts",
+          "line": 13,
+          "column": 6,
+          "specs": [
+            {
+              "title": "登录页应该正确加载并显示 OAuth 选项",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 1760,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31m\"\"\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31m\"\"\u001b[39m\n    at /Users/yuanjiawei/ai-coding/coviber/apps/emailaction/e2e/tests/auth.spec.ts:20:19",
+                        "location": {
+                          "file": "/Users/yuanjiawei/ai-coding/coviber/apps/emailaction/e2e/tests/auth.spec.ts",
+                          "column": 19,
+                          "line": 20
+                        },
+                        "snippet": "  18 |     // 验证页面标题\n  19 |     const title = await page.title()\n> 20 |     expect(title).toBeTruthy()\n     |                   ^\n  21 |     console.log('页面标题:', title)\n  22 |\n  23 |     // 验证 OAuth 按钮存在（至少一个）"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/yuanjiawei/ai-coding/coviber/apps/emailaction/e2e/tests/auth.spec.ts",
+                            "column": 19,
+                            "line": 20
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31m\"\"\u001b[39m\n\n  18 |     // 验证页面标题\n  19 |     const title = await page.title()\n> 20 |     expect(title).toBeTruthy()\n     |                   ^\n  21 |     console.log('页面标题:', title)\n  22 |\n  23 |     // 验证 OAuth 按钮存在（至少一个）\n    at /Users/yuanjiawei/ai-coding/coviber/apps/emailaction/e2e/tests/auth.spec.ts:20:19"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-05T18:57:23.715Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/yuanjiawei/ai-coding/coviber/apps/emailaction/test-results/auth-认证流程---真实环境-登录页应该正确加载并显示-OAuth-选项-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/yuanjiawei/ai-coding/coviber/apps/emailaction/test-results/auth-认证流程---真实环境-登录页应该正确加载并显示-OAuth-选项-chromium/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/yuanjiawei/ai-coding/coviber/apps/emailaction/test-results/auth-认证流程---真实环境-登录页应该正确加载并显示-OAuth-选项-chromium/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/yuanjiawei/ai-coding/coviber/apps/emailaction/e2e/tests/auth.spec.ts",
+                        "column": 19,
+                        "line": 20
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "d748ac400d08b85935ef-8b76f1d96012e6f20b24",
+              "file": "auth.spec.ts",
+              "line": 14,
+              "column": 7
+            },
+            {
+              "title": "点击 Google 登录应该跳转到 OAuth",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "failed",
+                      "duration": 12042,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('button:has-text(\"Google\")').first()\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('button:has-text(\"Google\")').first()\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('button:has-text(\"Google\")').first()\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('button:has-text(\"Google\")').first()\u001b[22m\n\n    at /Users/yuanjiawei/ai-coding/coviber/apps/emailaction/e2e/tests/auth.spec.ts:39:29",
+                        "location": {
+                          "file": "/Users/yuanjiawei/ai-coding/coviber/apps/emailaction/e2e/tests/auth.spec.ts",
+                          "column": 29,
+                          "line": 39
+                        },
+                        "snippet": "  37 |\n  38 |     const googleBtn = page.locator('button:has-text(\"Google\")').first()\n> 39 |     await expect(googleBtn).toBeVisible({ timeout: 10000 })\n     |                             ^\n  40 |     await googleBtn.click()\n  41 |\n  42 |     // 验证跳转"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/yuanjiawei/ai-coding/coviber/apps/emailaction/e2e/tests/auth.spec.ts",
+                            "column": 29,
+                            "line": 39
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('button:has-text(\"Google\")').first()\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('button:has-text(\"Google\")').first()\u001b[22m\n\n\n  37 |\n  38 |     const googleBtn = page.locator('button:has-text(\"Google\")').first()\n> 39 |     await expect(googleBtn).toBeVisible({ timeout: 10000 })\n     |                             ^\n  40 |     await googleBtn.click()\n  41 |\n  42 |     // 验证跳转\n    at /Users/yuanjiawei/ai-coding/coviber/apps/emailaction/e2e/tests/auth.spec.ts:39:29"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-05T18:57:23.706Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/yuanjiawei/ai-coding/coviber/apps/emailaction/test-results/auth-认证流程---真实环境-点击-Google-登录应该跳转到-OAuth-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/yuanjiawei/ai-coding/coviber/apps/emailaction/test-results/auth-认证流程---真实环境-点击-Google-登录应该跳转到-OAuth-chromium/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/yuanjiawei/ai-coding/coviber/apps/emailaction/test-results/auth-认证流程---真实环境-点击-Google-登录应该跳转到-OAuth-chromium/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/yuanjiawei/ai-coding/coviber/apps/emailaction/e2e/tests/auth.spec.ts",
+                        "column": 29,
+                        "line": 39
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "d748ac400d08b85935ef-2f5c2b6ae1c2d916bf18",
+              "file": "auth.spec.ts",
+              "line": 34,
+              "column": 7
+            }
+          ]
+        },
+        {
+          "title": "已登录状态 - 真实环境",
+          "file": "auth.spec.ts",
+          "line": 51,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Dashboard 应该显示用户数据",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 1069,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "Dashboard 内容长度: \u001b[33m85\u001b[39m\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-05T18:57:23.706Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d748ac400d08b85935ef-b52f4ea65f0cbfdef7eb",
+              "file": "auth.spec.ts",
+              "line": 54,
+              "column": 7
+            },
+            {
+              "title": "API 应该返回真实数据",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 461,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "API 状态: \u001b[33m200\u001b[39m\n"
+                        },
+                        {
+                          "text": "用户数据: {\n  \"id\": \"cmnkggz3q00029fs0jbyyno0v\",\n  \"email\": \"beconfident666@gmail.com\",\n  \"name\": \"E2E Test User\",\n  \"emailVerified\": null,\n  \"createdAt\": \"2026-04-05T18:54:55.000Z\",\n  \"updatedAt\": \"2026-04-05T18:54:55.000Z\"\n}\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-05T18:57:23.713Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d748ac400d08b85935ef-2d0ab047f21759a534b9",
+              "file": "auth.spec.ts",
+              "line": 70,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "e2e-real.spec.ts",
+      "file": "e2e-real.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "端到端完整流程 - 真用���",
+          "file": "e2e-real.spec.ts",
+          "line": 15,
+          "column": 6,
+          "specs": [
+            {
+              "title": "完整流程: 登录 → 同步 → 验证",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 7839,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "\n============================================================\n"
+                        },
+                        {
+                          "text": "端到端测试开始\n"
+                        },
+                        {
+                          "text": "============================================================\n"
+                        },
+                        {
+                          "text": "\n📍 步骤1: 验证登录状态\n"
+                        },
+                        {
+                          "text": "✅ 登录状态有效\n"
+                        },
+                        {
+                          "text": "\n📍 步骤2: 检查 Gmail 账户\n"
+                        },
+                        {
+                          "text": "Gmail 账户数量: 1\n"
+                        },
+                        {
+                          "text": "✅ Gmail 已连接: beconfident666@gmail.com\n"
+                        },
+                        {
+                          "text": "\n📍 步骤3: 检查任务平台\n"
+                        },
+                        {
+                          "text": "任务平台数量: 1\n"
+                        },
+                        {
+                          "text": "✅ 任务平台已配置: undefined\n"
+                        },
+                        {
+                          "text": "\n📍 步骤4: 触发邮件同步\n"
+                        },
+                        {
+                          "text": "同步 API 状态: 200\n"
+                        },
+                        {
+                          "text": "✅ 同步已触发: undefined\n"
+                        },
+                        {
+                          "text": "\n📍 步骤5: 等待后台处理\n"
+                        },
+                        {
+                          "text": "\n📍 步骤6: 验证同步状态\n"
+                        },
+                        {
+                          "text": "同步状态: FAILED\n"
+                        },
+                        {
+                          "text": "最后同步时间: 无\n"
+                        },
+                        {
+                          "text": "同步项目数: 0\n"
+                        },
+                        {
+                          "text": "✅ 同步状态正常\n"
+                        },
+                        {
+                          "text": "\n📍 步骤7: 验证任务\n"
+                        },
+                        {
+                          "text": "总任务数: 0\n"
+                        },
+                        {
+                          "text": "\n任务状态分布:\n"
+                        },
+                        {
+                          "text": "\n============================================================\n"
+                        },
+                        {
+                          "text": "端到端测试报告\n"
+                        },
+                        {
+                          "text": "============================================================\n"
+                        },
+                        {
+                          "text": "✅ 登录状态: 有效\n"
+                        },
+                        {
+                          "text": "✅ Gmail 账户: beconfident666@gmail.com\n"
+                        },
+                        {
+                          "text": "✅ 任务平台: undefined\n"
+                        },
+                        {
+                          "text": "✅ 同步状态: FAILED\n"
+                        },
+                        {
+                          "text": "✅ 总任务数: 0\n"
+                        },
+                        {
+                          "text": "============================================================\n\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-05T18:57:24.552Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "518b32015f880d740130-1ebffffeeb5664f13bfb",
+              "file": "e2e-real.spec.ts",
+              "line": 18,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "gmail-sync.spec.ts",
+      "file": "gmail-sync.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Gmail 同步 - 真用例",
+          "file": "gmail-sync.spec.ts",
+          "line": 14,
+          "column": 6,
+          "specs": [
+            {
+              "title": "前置条件：必须已登录",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 743,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-05T18:57:25.159Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ea637caa376f4d93483e-5a077158290cd74f106d",
+              "file": "gmail-sync.spec.ts",
+              "line": 20,
+              "column": 7
+            },
+            {
+              "title": "步骤1: 检查 Gmail 账户连接",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 162,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "Gmail 账户数量: 1\n"
+                        },
+                        {
+                          "text": "✅ Gmail 账户已连接: beconfident666@gmail.com\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-05T18:57:26.179Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ea637caa376f4d93483e-6352fcd12c135bb5edc0",
+              "file": "gmail-sync.spec.ts",
+              "line": 29,
+              "column": 7
+            },
+            {
+              "title": "步骤2: 检查任务平台账户",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 102,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "任务平台账户数量: 1\n"
+                        },
+                        {
+                          "text": "✅ 任务平台账户已配置: undefined\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-05T18:57:25.911Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ea637caa376f4d93483e-7bac541e9c9c72e31178",
+              "file": "gmail-sync.spec.ts",
+              "line": 51,
+              "column": 7
+            },
+            {
+              "title": "步骤3: 触发同步 - 完整流程",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 6905,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "\n🧪 测试运行 ID: test-d1c41152-1ba0-4c5c-bcaf-6beb8ac97027\n"
+                        },
+                        {
+                          "text": "============================================================\n"
+                        },
+                        {
+                          "text": "使用 Gmail 账户: beconfident666@gmail.com\n"
+                        },
+                        {
+                          "text": "使用任务平台: undefined\n"
+                        },
+                        {
+                          "text": "同步结果: {\n  \"success\": true,\n  \"data\": {\n    \"message\": \"Sync completed\",\n    \"accountId\": \"test-gmail-1\",\n    \"synced\": 0,\n    \"emailsProcessed\": 0\n  }\n}\n"
+                        },
+                        {
+                          "text": "✅ 同步后任务数: 0\n"
+                        },
+                        {
+                          "text": "\n============================================================\n"
+                        },
+                        {
+                          "text": "✅ Gmail 同步测试完成\n"
+                        },
+                        {
+                          "text": "============================================================\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-05T18:57:26.018Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ea637caa376f4d93483e-dc64e46cc6dff9c4664a",
+              "file": "gmail-sync.spec.ts",
+              "line": 67,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "tasks.spec.ts",
+      "file": "tasks.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "任务列表 - 真用例",
+          "file": "tasks.spec.ts",
+          "line": 12,
+          "column": 6,
+          "specs": [
+            {
+              "title": "前置条件：必须已登录",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 661,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-05T18:57:26.458Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d2d3f88df070d751ab05-eae2634c10871e45aad2",
+              "file": "tasks.spec.ts",
+              "line": 15,
+              "column": 7
+            },
+            {
+              "title": "待处理任务 API 必须返回有效数据",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 723,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "待处理任务数量: \u001b[33m0\u001b[39m\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-05T18:57:27.126Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d2d3f88df070d751ab05-6be52d9316a307dd1b61",
+              "file": "tasks.spec.ts",
+              "line": 24,
+              "column": 7
+            },
+            {
+              "title": "任务历史 API 必须返回有效数据",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 681,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "历史任务数量: \u001b[33m0\u001b[39m\n"
+                        },
+                        {
+                          "text": "\n=== 任务状态分布 ===\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-05T18:57:27.855Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d2d3f88df070d751ab05-3422e2fbd46880123c4c",
+              "file": "tasks.spec.ts",
+              "line": 55,
+              "column": 7
+            },
+            {
+              "title": "任务平台账户 API 必须返回有效数据",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 121,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "任务平台账户数量: \u001b[33m1\u001b[39m\n"
+                        },
+                        {
+                          "text": "1. undefined (undefined)\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-05T18:57:28.542Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d2d3f88df070d751ab05-e570152b1ae83509c33a",
+              "file": "tasks.spec.ts",
+              "line": 83,
+              "column": 7
+            },
+            {
+              "title": "用户设置 API 必须返回有效数据",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 680,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "用户设置: {\n  \"id\": \"cmnm4g7vi000f9f2tmwizzv5c\",\n  \"userId\": \"cmnkggz3q00029fs0jbyyno0v\",\n  \"emailNotifications\": true,\n  \"autoSync\": false,\n  \"syncFrequency\": \"THIRTY_MINUTES\",\n  \"createdAt\": \"2026-04-05T18:55:34.878Z\",\n  \"updatedAt\": \"2026-04-05T18:55:34.878Z\"\n}\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-05T18:57:28.669Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d2d3f88df070d751ab05-07549e3d8692624a7851",
+              "file": "tasks.spec.ts",
+              "line": 104,
+              "column": 7
+            },
+            {
+              "title": "API 健康检查 - 所有关键 API",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 116,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "\n=== API 健康检查 ===\n"
+                        },
+                        {
+                          "text": "Gmail 账户: 200 ✅ [1 项]\n"
+                        },
+                        {
+                          "text": "任务列表: 200 ✅ {\"tasks\":[],\"stats\":{}}\n"
+                        },
+                        {
+                          "text": "任务平台: 200 ✅ [1 项]\n"
+                        },
+                        {
+                          "text": "用户账户: 200 ✅ {\"id\":\"cmnkggz3q00029fs0jbyyno0v\",\"email\":\"beconfident666@gmail.com\",\"name\":\"E2E Test User\",\"emailVe\n"
+                        },
+                        {
+                          "text": "用户设置: 200 ✅ {\"id\":\"cmnm4g7vi000f9f2tmwizzv5c\",\"userId\":\"cmnkggz3q00029fs0jbyyno0v\",\"emailNotifications\":true,\"au\n"
+                        },
+                        {
+                          "text": "===================\n\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-05T18:57:29.355Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d2d3f88df070d751ab05-d9ffae13c2b42a6012fc",
+              "file": "tasks.spec.ts",
+              "line": 122,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-04-05T18:57:23.257Z",
+    "duration": 12917.217,
+    "expected": 13,
+    "skipped": 0,
+    "unexpected": 2,
+    "flaky": 0
+  }
+}

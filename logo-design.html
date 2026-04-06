@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EmailAction Logo Design</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --champagne: #C9A962;
+      --champagne-light: #D4BC7D;
+      --champagne-dark: #A68B4B;
+      --obsidian: #0A0A0A;
+      --charcoal: #1A1A1A;
+      --slate: #2A2A2A;
+      --pearl: #FAFAFA;
+      --cream: #F5F3EF;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Instrument Sans', sans-serif;
+      background: var(--obsidian);
+      color: var(--pearl);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Subtle grain texture */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      opacity: 0.03;
+      pointer-events: none;
+      z-index: 1000;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 80px 40px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 100px;
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 300;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, var(--champagne-light) 0%, var(--champagne) 50%, var(--champagne-dark) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .subtitle {
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
+      color: rgba(250, 250, 250, 0.4);
+      text-transform: uppercase;
+    }
+
+    .section {
+      margin-bottom: 120px;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      margin-bottom: 60px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(201, 169, 98, 0.2);
+      color: var(--champagne);
+    }
+
+    /* Logo Cards */
+    .logo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+      gap: 40px;
+    }
+
+    .logo-card {
+      background: var(--charcoal);
+      border: 1px solid rgba(201, 169, 98, 0.1);
+      padding: 60px 40px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .logo-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--champagne), transparent);
+      opacity: 0;
+      transition: opacity 0.5s;
+    }
+
+    .logo-card:hover::before {
+      opacity: 1;
+    }
+
+    .logo-card:hover {
+      border-color: rgba(201, 169, 98, 0.3);
+      transform: translateY(-4px);
+    }
+
+    .card-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--champagne);
+      margin-bottom: 40px;
+      opacity: 0.7;
+    }
+
+    .logo-display {
+      height: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
+
+    .logo-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 400;
+      margin-bottom: 12px;
+      color: var(--pearl);
+    }
+
+    .logo-desc {
+      font-size: 0.8rem;
+      line-height: 1.8;
+      color: rgba(250, 250, 250, 0.5);
+    }
+
+    /* SVG Logo Styles */
+    .logo-svg {
+      width: 120px;
+      height: 120px;
+    }
+
+    /* Logo A: Abstract Envelope */
+    .logo-a .main-shape {
+      fill: none;
+      stroke: var(--champagne);
+      stroke-width: 1.5;
+    }
+
+    .logo-a .accent {
+      fill: var(--champagne);
+      opacity: 0.8;
+    }
+
+    /* Logo B: Geometric Sync */
+    .logo-b .ring {
+      fill: none;
+      stroke: var(--champagne);
+      stroke-width: 1.5;
+    }
+
+    .logo-b .core {
+      fill: var(--champagne);
+    }
+
+    /* Logo C: Letter Mark */
+    .logo-c .letter {
+      fill: none;
+      stroke: var(--champagne);
+      stroke-width: 2;
+    }
+
+    /* Logo D: Arrow Flow */
+    .logo-d .flow {
+      fill: var(--champagne);
+    }
+
+    /* Black & White Versions */
+    .bw-section .logo-card {
+      background: var(--pearl);
+      border-color: rgba(0, 0, 0, 0.1);
+    }
+
+    .bw-section .logo-name,
+    .bw-section .logo-desc {
+      color: var(--charcoal);
+    }
+
+    .bw-section .logo-desc {
+      opacity: 0.6;
+    }
+
+    .bw-section .logo-a .main-shape,
+    .bw-section .logo-a .accent {
+      stroke: var(--charcoal);
+      fill: var(--charcoal);
+    }
+
+    .bw-section .logo-b .ring,
+    .bw-section .logo-b .core {
+      stroke: var(--charcoal);
+      fill: var(--charcoal);
+    }
+
+    .bw-section .logo-c .letter {
+      stroke: var(--charcoal);
+    }
+
+    .bw-section .logo-d .flow {
+      fill: var(--charcoal);
+    }
+
+    /* Size Variations */
+    .size-grid {
+      display: flex;
+      align-items: flex-end;
+      gap: 60px;
+      justify-content: center;
+      padding: 80px 0;
+      background: var(--charcoal);
+      border: 1px solid rgba(201, 169, 98, 0.1);
+    }
+
+    .size-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .size-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(250, 250, 250, 0.4);
+    }
+
+    /* Light Background */
+    .light-bg {
+      background: var(--cream);
+      padding: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 80px;
+      border: 1px solid rgba(201, 169, 98, 0.2);
+    }
+
+    .light-bg .logo-a .main-shape {
+      stroke: var(--charcoal);
+    }
+
+    .light-bg .logo-a .accent {
+      fill: var(--charcoal);
+    }
+
+    .light-bg .logo-b .ring {
+      stroke: var(--charcoal);
+    }
+
+    .light-bg .logo-b .core {
+      fill: var(--charcoal);
+    }
+
+    /* Dark Background */
+    .dark-bg {
+      background: var(--obsidian);
+      padding: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 80px;
+      border: 1px solid rgba(201, 169, 98, 0.1);
+    }
+
+    /* Wordmark */
+    .wordmark-section {
+      text-align: center;
+      padding: 100px 0;
+    }
+
+    .wordmark {
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      gap: 4px;
+      margin-bottom: 20px;
+    }
+
+    .wordmark .email {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      color: var(--pearl);
+    }
+
+    .wordmark .action {
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: clamp(1.5rem, 3vw, 2.5rem);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      color: var(--champagne);
+    }
+
+    .tagline {
+      font-size: 0.75rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: rgba(250, 250, 250, 0.3);
+    }
+
+    /* Horizontal Rule */
+    hr {
+      border: none;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201, 169, 98, 0.3), transparent);
+      margin: 80px 0;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 60px 0;
+      border-top: 1px solid rgba(201, 169, 98, 0.1);
+    }
+
+    .color-palette {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    .color-swatch {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .swatch {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .swatch.champagne {
+      background: var(--champagne);
+    }
+
+    .swatch.obsidian {
+      background: var(--obsidian);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .swatch.charcoal {
+      background: var(--charcoal);
+    }
+
+    .swatch.cream {
+      background: var(--cream);
+    }
+
+    .color-code {
+      font-size: 0.7rem;
+      font-family: monospace;
+      color: rgba(250, 250, 250, 0.4);
+      letter-spacing: 0.1em;
+    }
+
+    .copyright {
+      font-size: 0.7rem;
+      color: rgba(250, 250, 250, 0.3);
+      letter-spacing: 0.1em;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .logo-card {
+      animation: fadeInUp 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+      opacity: 0;
+    }
+
+    .logo-card:nth-child(1) { animation-delay: 0.1s; }
+    .logo-card:nth-child(2) { animation-delay: 0.2s; }
+    .logo-card:nth-child(3) { animation-delay: 0.3s; }
+    .logo-card:nth-child(4) { animation-delay: 0.4s; }
+
+    /* Hover effect for SVG */
+    .logo-svg {
+      transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .logo-card:hover .logo-svg {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>EmailAction</h1>
+      <p class="subtitle">Logo Design System</p>
+    </header>
+
+    <!-- Primary Logos -->
+    <section class="section">
+      <h2 class="section-title">Primary Logos</h2>
+      <div class="logo-grid">
+
+        <!-- Logo A: Abstract Envelope -->
+        <div class="logo-card">
+          <span class="card-label">Option A</span>
+          <div class="logo-display">
+            <svg class="logo-svg" viewBox="0 0 100 100">
+              <!-- Abstract envelope shape -->
+              <path class="main-shape" d="M15 30 L50 55 L85 30 L85 70 L15 70 Z" />
+              <path class="main-shape" d="M15 30 L50 55 L85 30" />
+              <!-- Accent: action arrow -->
+              <polygon class="accent" points="70,40 82,50 70,60 73,50" />
+            </svg>
+          </div>
+          <h3 class="logo-name">Envelop Arrow</h3>
+          <p class="logo-desc">信封与箭头的抽象融合，象征邮件的动作与传递。极简线条传达专业与效率。</p>
+        </div>
+
+        <!-- Logo B: Geometric Sync -->
+        <div class="logo-card">
+          <span class="card-label">Option B</span>
+          <div class="logo-display">
+            <svg class="logo-svg" viewBox="0 0 100 100">
+              <!-- Two interlocking rings -->
+              <circle class="ring" cx="38" cy="50" r="22" />
+              <circle class="ring" cx="62" cy="50" r="22" />
+              <!-- Core dot -->
+              <circle class="core" cx="50" cy="50" r="6" />
+            </svg>
+          </div>
+          <h3 class="logo-name">Sync Rings</h3>
+          <p class="logo-desc">两个交错的圆环代表同步与循环，中心的金色圆点象征核心焦点。几何美感与功能寓意并存。</p>
+        </div>
+
+        <!-- Logo C: Letter Mark -->
+        <div class="logo-card">
+          <span class="card-label">Option C</span>
+          <div class="logo-display">
+            <svg class="logo-svg" viewBox="0 0 100 100">
+              <!-- Stylized E and A merge -->
+              <path class="letter" d="M25 25 L25 75 L55 75" />
+              <path class="letter" d="M25 50 L45 50" />
+              <path class="letter" d="M25 25 L55 25" />
+              <!-- A part -->
+              <path class="letter" d="M55 25 L75 75" />
+              <path class="letter" d="M75 25 L55 75" />
+              <path class="letter" d="M60 50 L70 50" />
+            </svg>
+          </div>
+          <h3 class="logo-name">Letter Merge</h3>
+          <p class="logo-desc">E与A的几何化融合，线条交错形成视觉节奏。低调却富有辨识度的文字标识。</p>
+        </div>
+
+        <!-- Logo D: Flow Arrows -->
+        <div class="logo-card">
+          <span class="card-label">Option D</span>
+          <div class="logo-display">
+            <svg class="logo-svg" viewBox="0 0 100 100">
+              <!-- Flowing arrow pattern -->
+              <path class="flow" d="M20 35 Q35 35 50 50 Q65 65 80 65 L75 60 M80 65 L75 70" fill="none" stroke="currentColor" stroke-width="2" />
+              <path class="flow" d="M20 50 Q35 50 50 50 Q65 50 80 50" fill="none" stroke="currentColor" stroke-width="2" />
+              <path class="flow" d="M20 65 Q35 65 50 50 Q65 35 80 35 L75 30 M80 35 L75 40" fill="none" stroke="currentColor" stroke-width="2" />
+            </svg>
+          </div>
+          <h3 class="logo-name">Flow Lines</h3>
+          <p class="logo-desc">三条流动的线条代表邮件的流转与处理，优雅的曲线传达柔和与精准。动态中的平衡。</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Black & White -->
+    <section class="section bw-section">
+      <h2 class="section-title">Monochrome Versions</h2>
+      <div class="logo-grid">
+        <div class="logo-card">
+          <span class="card-label">Option A — B/W</span>
+          <div class="logo-display">
+            <svg class="logo-svg" viewBox="0 0 100 100">
+              <path class="main-shape" d="M15 30 L50 55 L85 30 L85 70 L15 70 Z" />
+              <path class="main-shape" d="M15 30 L50 55 L85 30" />
+              <polygon class="accent" points="70,40 82,50 70,60 73,50" />
+            </svg>
+          </div>
+          <h3 class="logo-name">Envelop Arrow</h3>
+          <p class="logo-desc">黑白版本适用于打印、传真等单色场景</p>
+        </div>
+
+        <div class="logo-card">
+          <span class="card-label">Option B — B/W</span>
+          <div class="logo-display">
+            <svg class="logo-svg" viewBox="0 0 100 100">
+              <circle class="ring" cx="38" cy="50" r="22" />
+              <circle class="ring" cx="62" cy="50" r="22" />
+              <circle class="core" cx="50" cy="50" r="6" />
+            </svg>
+          </div>
+          <h3 class="logo-name">Sync Rings</h3>
+          <p class="logo-desc">极简几何在任何背景下都保持识别度</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Size Variations -->
+    <section class="section">
+      <h2 class="section-title">Scale System</h2>
+      <div class="size-grid">
+        <div class="size-item">
+          <svg width="24" height="24" viewBox="0 0 100 100">
+            <circle cx="38" cy="50" r="22" fill="none" stroke="#C9A962" stroke-width="3" />
+            <circle cx="62" cy="50" r="22" fill="none" stroke="#C9A962" stroke-width="3" />
+            <circle cx="50" cy="50" r="8" fill="#C9A962" />
+          </svg>
+          <span class="size-label">16px</span>
+        </div>
+        <div class="size-item">
+          <svg width="32" height="32" viewBox="0 0 100 100">
+            <circle cx="38" cy="50" r="22" fill="none" stroke="#C9A962" stroke-width="2.5" />
+            <circle cx="62" cy="50" r="22" fill="none" stroke="#C9A962" stroke-width="2.5" />
+            <circle cx="50" cy="50" r="7" fill="#C9A962" />
+          </svg>
+          <span class="size-label">24px</span>
+        </div>
+        <div class="size-item">
+          <svg width="48" height="48" viewBox="0 0 100 100">
+            <circle cx="38" cy="50" r="22" fill="none" stroke="#C9A962" stroke-width="2" />
+            <circle cx="62" cy="50" r="22" fill="none" stroke="#C9A962" stroke-width="2" />
+            <circle cx="50" cy="50" r="6" fill="#C9A962" />
+          </svg>
+          <span class="size-label">32px</span>
+        </div>
+        <div class="size-item">
+          <svg width="64" height="64" viewBox="0 0 100 100">
+            <circle cx="38" cy="50" r="22" fill="none" stroke="#C9A962" stroke-width="1.5" />
+            <circle cx="62" cy="50" r="22" fill="none" stroke="#C9A962" stroke-width="1.5" />
+            <circle cx="50" cy="50" r="6" fill="#C9A962" />
+          </svg>
+          <span class="size-label">48px</span>
+        </div>
+        <div class="size-item">
+          <svg width="96" height="96" viewBox="0 0 100 100">
+            <circle cx="38" cy="50" r="22" fill="none" stroke="#C9A962" stroke-width="1.5" />
+            <circle cx="62" cy="50" r="22" fill="none" stroke="#C9A962" stroke-width="1.5" />
+            <circle cx="50" cy="50" r="6" fill="#C9A962" />
+          </svg>
+          <span class="size-label">64px</span>
+        </div>
+        <div class="size-item">
+          <svg width="128" height="128" viewBox="0 0 100 100">
+            <circle cx="38" cy="50" r="22" fill="none" stroke="#C9A962" stroke-width="1.5" />
+            <circle cx="62" cy="50" r="22" fill="none" stroke="#C9A962" stroke-width="1.5" />
+            <circle cx="50" cy="50" r="6" fill="#C9A962" />
+          </svg>
+          <span class="size-label">128px</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Context Display -->
+    <section class="section">
+      <h2 class="section-title">Context Application</h2>
+
+      <h3 style="font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(250,250,250,0.4); margin-bottom: 24px;">Light Background</h3>
+      <div class="light-bg">
+        <svg width="60" height="60" viewBox="0 0 100 100">
+          <circle cx="38" cy="50" r="22" fill="none" stroke="#1A1A1A" stroke-width="1.5" />
+          <circle cx="62" cy="50" r="22" fill="none" stroke="#1A1A1A" stroke-width="1.5" />
+          <circle cx="50" cy="50" r="6" fill="#1A1A1A" />
+        </svg>
+        <div style="text-align: left;">
+          <div style="font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: #1A1A1A; font-weight: 300;">Email<span style="color: #C9A962; font-weight: 600;">Action</span></div>
+          <div style="font-size: 0.7rem; letter-spacing: 0.3em; color: rgba(0,0,0,0.4); text-transform: uppercase; margin-top: 8px;">邮件待办自动同步</div>
+        </div>
+      </div>
+
+      <h3 style="font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(250,250,250,0.4); margin: 40px 0 24px;">Dark Background</h3>
+      <div class="dark-bg">
+        <svg width="60" height="60" viewBox="0 0 100 100">
+          <circle cx="38" cy="50" r="22" fill="none" stroke="#C9A962" stroke-width="1.5" />
+          <circle cx="62" cy="50" r="22" fill="none" stroke="#C9A962" stroke-width="1.5" />
+          <circle cx="50" cy="50" r="6" fill="#C9A962" />
+        </svg>
+        <div style="text-align: left;">
+          <div style="font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: #FAFAFA; font-weight: 300;">Email<span style="color: #C9A962; font-weight: 600;">Action</span></div>
+          <div style="font-size: 0.7rem; letter-spacing: 0.3em; color: rgba(250,250,250,0.4); text-transform: uppercase; margin-top: 8px;">邮件待办自动同步</div>
+        </div>
+      </div>
+    </section>
+
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+      <div class="color-palette">
+        <div class="color-swatch">
+          <div class="swatch champagne"></div>
+          <span class="color-code">#C9A962</span>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch obsidian"></div>
+          <span class="color-code">#0A0A0A</span>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch charcoal"></div>
+          <span class="color-code">#1A1A1A</span>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch cream"></div>
+          <span class="color-code">#F5F3EF</span>
+        </div>
+      </div>
+      <p class="copyright">EmailAction Brand Guidelines · 2026</p>
+    </footer>
+  </div>
+</body>
+</html>
