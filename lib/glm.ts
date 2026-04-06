@@ -105,8 +105,9 @@ async function callGLMAPI(messages: GLMMessage[]): Promise<string> {
   }
 
   const apiUrl = getChatCompletionsUrl()
-  // 讯飞 CRS 使用 OpenAI 兼容格式，模型名根据实际配置
-  const model = 'glm-4'
+  // 讯飞 Coding Plan 要求模型名统一使用 astron-code-latest
+  // 底层模型在讯飞平台配置，不是在请求中指定
+  const model = 'astron-code-latest'
 
   console.log('[GLM] Calling API:', apiUrl, 'model:', model)
 
