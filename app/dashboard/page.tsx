@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { useSession } from 'next-auth/react'
-import { Clock, ArrowUpRight, RefreshCw, Mail, Sparkles } from 'lucide-react'
+import { Clock, ArrowUpRight, RefreshCw, Mail, Sparkles, AlertCircle, CheckCircle2, X } from 'lucide-react'
 import Link from 'next/link'
 import { RecentTasks } from '@/components/recent-tasks'
 
@@ -23,13 +23,17 @@ interface TaskAccount {
   workspaceName: string | null
 }
 
+type SyncStatus = 'idle' | 'syncing' | 'success' | 'error' | 'need-setup'
+
 export default function DashboardPage() {
   const { data: session } = useSession()
   const [stats, setStats] = useState<Stats>({ pending: 0, todaySynced: 0, totalTasks: 0 })
   const [gmailAccounts, setGmailAccounts] = useState<GmailAccount[]>([])
   const [taskAccounts, setTaskAccounts] = useState<TaskAccount[]>([])
-  const [syncing, setSyncing] = useState(false)
+  const [syncStatus, setSyncStatus] = useState<SyncStatus>('idle')
+  const [syncMessage, setSyncMessage] = useState('')
   const [loading, setLoading] = useState(true)
+  const [showSyncResult, setShowSyncResult] = useState(false)
 
   useEffect(() => {
     async function fetchData() {
@@ -68,9 +72,23 @@ export default function DashboardPage() {
   }, [])
 
   async function handleSyncEmails() {
-    if (gmailAccounts.length === 0 || taskAccounts.length === 0) return
+    // 检查 Gmail 是否已连接
+    if (gmailAccounts.length === 0) {
+      setSyncStatus('need-setup')
+      setSyncMessage('请先连接 Gmail 账户')
+      return
+    }
 
-    setSyncing(true)
+    // 检查任务平台是否已连接
+    if (taskAccounts.length === 0) {
+      setSyncStatus('need-setup')
+      setSyncMessage('请先连接任务平台（飞书/Notion）')
+      return
+    }
+
+    setSyncStatus('syncing')
+    setSyncMessage('正在同步邮件...')
+
     try {
       const response = await fetch('/api/gmail/sync', {
         method: 'POST',
@@ -84,12 +102,26 @@ export default function DashboardPage() {
       })
 
       if (response.ok) {
-        window.location.reload()
+        const data = await response.json()
+        setSyncStatus('success')
+        setSyncMessage(`同步完成！共同步 ${data.synced || 0} 个待办事项`)
+        setShowSyncResult(true)
+
+        // 刷新数据
+        setTimeout(() => {
+          window.location.reload()
+        }, 2000)
+      } else {
+        const error = await response.json()
+        setSyncStatus('error')
+        setSyncMessage(error.error || '同步失败，请重试')
+        setShowSyncResult(true)
       }
     } catch (error) {
       console.error('Sync error:', error)
-    } finally {
-      setSyncing(false)
+      setSyncStatus('error')
+      setSyncMessage('同步失败，请检查网络连接')
+      setShowSyncResult(true)
     }
   }
 
@@ -137,28 +169,77 @@ export default function DashboardPage() {
               </Link>
               <button
                 onClick={handleSyncEmails}
-                disabled={syncing || !isConnected}
-                className="inline-flex items-center gap-2 border border-[#1A1918] text-[#1A1918] px-5 py-2.5 text-[13px] font-medium tracking-wide rounded-lg hover:bg-[#1A1918] hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-300"
+                disabled={syncStatus === 'syncing'}
+                className={`inline-flex items-center gap-2 px-5 py-2.5 text-[13px] font-medium tracking-wide rounded-lg transition-all duration-300 ${
+                  syncStatus === 'syncing'
+                    ? 'bg-[#F4F3EE] text-[#6B6966] cursor-wait'
+                    : 'border border-[#1A1918] text-[#1A1918] hover:bg-[#1A1918] hover:text-white'
+                }`}
               >
-                {syncing ? (
-                  <RefreshCw className="w-4 h-4 animate-spin" />
+                {syncStatus === 'syncing' ? (
+                  <>
+                    <RefreshCw className="w-4 h-4 animate-spin" />
+                    同步中...
+                  </>
                 ) : (
-                  <Mail className="w-4 h-4" />
+                  <>
+                    <Mail className="w-4 h-4" />
+                    同步邮件
+                  </>
                 )}
-                {syncing ? '同步中' : '同步邮件'}
               </button>
             </div>
           </div>
 
+          {/* Sync Status Banner */}
+          {showSyncResult && (
+            <div className={`mt-6 p-4 rounded-lg flex items-center justify-between animate-fade-in-up ${
+              syncStatus === 'success'
+                ? 'bg-[#4A7C59]/10 border border-[#4A7C59]/20'
+                : syncStatus === 'error' || syncStatus === 'need-setup'
+                  ? 'bg-[#C15F3C]/10 border border-[#C15F3C]/20'
+                  : ''
+            }`}>
+              <div className="flex items-center gap-3">
+                {syncStatus === 'success' ? (
+                  <CheckCircle2 className="w-5 h-5 text-[#4A7C59]" />
+                ) : (
+                  <AlertCircle className="w-5 h-5 text-[#C15F3C]" />
+                )}
+                <span className={`text-[14px] font-medium ${
+                  syncStatus === 'success' ? 'text-[#4A7C59]' : 'text-[#C15F3C]'
+                }`}>
+                  {syncMessage}
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                {(syncStatus === 'error' || syncStatus === 'need-setup') && (
+                  <Link
+                    href="/dashboard/accounts"
+                    className="text-[12px] font-medium text-[#1A1918] hover:text-[#C15F3C] transition-colors"
+                  >
+                    前往配置 →
+                  </Link>
+                )}
+                <button
+                  onClick={() => setShowSyncResult(false)}
+                  className="p-1 hover:bg-white/50 rounded transition-colors"
+                >
+                  <X className="w-4 h-4 text-[#6B6966]" />
+                </button>
+              </div>
+            </div>
+          )}
+
           {/* Connection Status */}
-          {!isConnected && (
+          {!isConnected && !showSyncResult && (
             <div className="mt-8 flex gap-4 animate-fade-in-up delay-300">
               {gmailAccounts.length === 0 && (
                 <Link
                   href="/dashboard/accounts"
                   className="group flex items-center gap-4 border border-dashed border-[#D4D2CD] hover:border-[#C15F3C] bg-white px-5 py-4 rounded-lg transition-all duration-300"
                 >
-                  <div className="w-10 h-10 border border-[#EBE9E4] flex items-center justify-center">
+                  <div className="w-10 h-10 border border-[#EBE9E4] rounded-lg flex items-center justify-center">
                     <Mail className="w-5 h-5 text-[#6B6966]" />
                   </div>
                   <div>
@@ -173,7 +254,7 @@ export default function DashboardPage() {
                   href="/dashboard/accounts"
                   className="group flex items-center gap-4 border border-dashed border-[#D4D2CD] hover:border-[#4A7C59] bg-white px-5 py-4 rounded-lg transition-all duration-300"
                 >
-                  <div className="w-10 h-10 border border-[#EBE9E4] flex items-center justify-center">
+                  <div className="w-10 h-10 border border-[#EBE9E4] rounded-lg flex items-center justify-center">
                     <Sparkles className="w-5 h-5 text-[#6B6966]" />
                   </div>
                   <div>
@@ -183,6 +264,24 @@ export default function DashboardPage() {
                   <ArrowUpRight className="w-4 h-4 text-[#9E9C98] group-hover:text-[#4A7C59] ml-2 transition-colors" />
                 </Link>
               )}
+            </div>
+          )}
+
+          {/* Connection Status - Connected */}
+          {isConnected && !showSyncResult && (
+            <div className="mt-6 flex items-center gap-6 text-[12px]">
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-[#4A7C59]" />
+                <span className="text-[#6B6966]">Gmail 已连接</span>
+                <span className="text-[#9E9C98]">({gmailAccounts[0]?.email})</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-[#4A7C59]" />
+                <span className="text-[#6B6966]">任务平台已连接</span>
+                <span className="text-[#9E9C98]">
+                  ({taskAccounts[0]?.platform === 'FEISHU' ? '飞书' : 'Notion'})
+                </span>
+              </div>
             </div>
           )}
         </div>
@@ -267,10 +366,10 @@ export default function DashboardPage() {
           </Link>
           <button
             onClick={handleSyncEmails}
-            disabled={syncing || !isConnected}
-            className="flex-1 inline-flex items-center justify-center gap-2 border border-[#1A1918] text-[#1A1918] py-3 text-[13px] font-medium rounded-lg disabled:opacity-30"
+            disabled={syncStatus === 'syncing'}
+            className="flex-1 inline-flex items-center justify-center gap-2 border border-[#1A1918] text-[#1A1918] py-3 text-[13px] font-medium rounded-lg disabled:opacity-50"
           >
-            {syncing ? (
+            {syncStatus === 'syncing' ? (
               <RefreshCw className="w-4 h-4 animate-spin" />
             ) : (
               <Mail className="w-4 h-4" />
