@@ -256,12 +256,16 @@ export default function HomePage() {
 
       {/* Footer */}
       <footer className="py-12 px-8 lg:px-16 border-t border-[#E8E6E1]">
-        <div className="max-w-6xl mx-auto flex items-center justify-between">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
           <div>
             <Logo size="sm" />
             <p className="text-sm text-[#9E9C98] mt-2">把邮件变成行动</p>
           </div>
-          <p className="text-sm text-[#9E9C98]">© 2026</p>
+          <div className="flex items-center gap-6 text-sm text-[#6B6966]">
+            <Link href="/privacy" className="hover:text-[#1A1918] transition-colors">隐私权政策</Link>
+            <Link href="/terms" className="hover:text-[#1A1918] transition-colors">服务条款</Link>
+          </div>
+          <p className="text-sm text-[#9E9C98]">© 2026 EmailAction</p>
         </div>
       </footer>
     </main>
